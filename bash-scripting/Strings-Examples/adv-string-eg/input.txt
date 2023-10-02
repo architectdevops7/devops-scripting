@@ -1,0 +1,13 @@
+This is a sample text file.
+It contains several lines of text for testing purposes.
+Please replace the 'old_text' with 'new_text'.
+This line contains the word 'pattern'.
+Another line with 'pattern' in it.
+The word 'pattern' should be replaced.
+Prefix this line with 'Prefix: '.
+Prefix this one too.
+And this line as well.
+
+(123) John
+(456) Jane
+(789) Bob

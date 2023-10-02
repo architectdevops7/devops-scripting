@@ -1,0 +1,69 @@
+Substring extraction:
+
+#!/bin/bash
+
+original_string="This is a sample text"
+start=5
+length=6
+substring="${original_string: start:length}"
+echo "Substring: $substring"
+
+-------------------------------------------------------
+String length:
+
+#!/bin/bash
+
+my_string="This is a sample string"
+length=${#my_string}
+echo "Length of the string is $length"
+
+-------------------------------------------------------
+Substring Removal:
+
+#!/bin/bash
+
+original_string="The quick brown fox jumps over the lazy dog"
+remove="the"
+result="${original_string#*${remove}}"
+echo "After removing first occurrence: $result"
+
+result="${original_string##*${remove}}"
+echo "After removing last occurrence: $result"
+
+result="${original_string//${remove}/}"
+echo "After removing all occurrences: $result
+
+-------------------------------------------------------
+Pattern Matching:
+
+#!/bin/bash
+
+original_string="The quick brown fox jumps over the lazy dog"
+pattern="fox"
+result="${original_string#*$pattern}"
+echo "After removing first match: $result"
+
+result="${original_string//$pattern}"
+echo "After removing last match: $result"
+
+-------------------------------------------------------
+Case conversion:
+
+text="Hello World"
+lowercase="${text,,}"  # Converts to "hello world"
+
+
+#!/bin/bash
+
+my_string="Hello, World!"
+
+# Convert to lowercase using 'tr'
+lowercase=$(echo "$my_string" | tr '[:upper:]' '[:lower:]')
+
+# Convert to uppercase using 'tr'
+uppercase=$(echo "$my_string" | tr '[:lower:]' '[:upper:]')
+
+echo "Lowercase: $lowercase"
+echo "Uppercase: $uppercase"
+
+-------------------------------------------------------

@@ -1,0 +1,52 @@
+-------------------------------------------------------
+Automated Script Backups:
+
+
+#!/bin/bash
+
+# Prompt the user for the source directory
+read -p "Enter the source directory: " source_directory
+
+# Prompt the user for the destination directory
+read -p "Enter the destination directory for backups: " backup_directory
+
+# Prompt the user for the search string
+read -p "Enter the search string: " search_string
+
+# Prompt the user for the replace string
+read -p "Enter the replace string: " replace_string
+
+# Check if the source directory exists
+if [ ! -d "$source_directory" ]; then
+    echo "Source directory does not exist. Exiting."
+    exit 1
+fi
+
+# Check if the backup directory exists; if not, create it
+if [ ! -d "$backup_directory" ]; then
+    mkdir -p "$backup_directory"
+fi
+
+# Iterate through files in the source directory
+for file in "$source_directory"/*; do
+    # Check if the file is a regular file
+    if [ -f "$file" ]; then
+        # Create a backup of the original file with a timestamp
+        timestamp=$(date +"%Y%m%d%H%M%S")
+        backup_file="$backup_directory/$(basename "$file").backup_$timestamp"
+        cp "$file" "$backup_file"
+
+        # Perform the search and replace operation in-place
+        sed -i "s/$search_string/$replace_string/g" "$file"
+
+        # Check if the search and replace operation was successful
+        if [ $? -eq 0 ]; then
+            echo "Search and replace completed successfully in: $file"
+        else
+            echo "Search and replace failed in: $file"
+            # If the operation failed, restore the original file from the backup
+            cp "$backup_file" "$file"
+            echo "Original file restored from backup."
+        fi
+    fi
+done

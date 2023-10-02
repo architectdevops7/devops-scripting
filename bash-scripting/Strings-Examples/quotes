@@ -1,0 +1,26 @@
+Strings:
+Single quotes
+Double quotes
+Escape Sequence
+
+Single quotes
+ex: 
+    echo 'This is a $variable'  # Output: This is a $variable
+Explanation: Single-quoted strings preserve the literal text, 
+             so $variable is not treated as a variable but as part of the string.
+ex: 
+    echo 'This is a single quote '\'' inside single quotes'  # Output: This is a single quote ' inside single quotes
+
+Double quotes
+ex:
+    variable="World"
+    echo "Hello, $variable"  # Output: Hello, World
+
+Escape Sequence
+ex: 
+    echo "This is a newline.\nThis is on a new line."
+Explanation: Double-quoted strings interpret escape sequences like \n, 
+             creating a newline.
+
+
+

@@ -1,0 +1,55 @@
+Concatenation
+Length of a string
+Substring Extraction
+String Manipulation
+Heredoc
+
+Concatenation:
+
+# Concatenate two strings
+str1="Hello, "
+str2="World!"
+result="$str1$str2"
+echo $result  
+# Output: Hello, World!
+
+Length of a string:
+
+# Calculate the length of a string
+my_string="This is a sample string"
+length=${#my_string}
+echo "Length of the string is $length"  
+# Output: Length of the string is 23
+
+Substring Extraction:
+
+# Extract a substring from a string
+full_string="This is a sample text"
+substring="${full_string:5:6}"  # Starting at index 5, take 6 characters
+echo "Substring: $substring"  
+# Output: Substring: is a s
+
+String Manipulation:
+
+# Replace a substring in a string
+original_string="I love Linux and Linux is awesome."
+replaced_string="${original_string/Linux/Unix}"
+echo "Replaced String: $replaced_string"  
+# Output: Replaced String: I love Unix and Unix is awesome.
+
+Heredoc (Here Document):
+
+# Using a heredoc to define a multi-line string
+cat <<EOF
+This is a
+multi-line
+string.
+EOF
+
+cat <<EOF > output.txt
+This is a
+multi-line
+string.
+EOF
+
+

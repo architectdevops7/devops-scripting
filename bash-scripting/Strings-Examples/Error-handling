@@ -1,0 +1,46 @@
+Error handling
+
+1. Exit on Error (set -e):
+By using set -e at the beginning of your script, you can make it exit immediately if any command returns a non-zero exit code.
+
+#!/bin/bash
+# Enable exit on error
+set -e
+# Simulate a command that fails
+ls non_existent_directory
+# This script will exit immediately due to set -e
+echo "This line will not be executed."
+
+2. Custom Error Messages:
+
+#!/bin/bash
+# Check if a file exists
+if [ ! -f "myfile.txt" ]; then
+    echo "Error: File not found!" >&2
+    exit 1
+fi
+
+3. Conditional Error Handling:
+
+#!/bin/bash
+# Check if a file exists
+if [ ! -f "myfile.txt" ]; then
+    echo "Error: File not found!" >&2
+    exit 1
+fi
+# Check if a variable is too small
+var=5
+if [ "$var" -lt 10 ]; then
+    echo "Error: Value is too small!" >&2
+    exit 2
+fi
+
+4. Logging Errors:
+
+#!/bin/bash
+# Check if a file exists
+if [ ! -f "myfile.txt" ]; then
+    echo "Error: File not found!" >&2
+    echo "Error: File not found!" >> error.log
+    exit 1
+fi

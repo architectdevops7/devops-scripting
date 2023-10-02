@@ -1,0 +1,123 @@
+Regular Expressions (Regex) with grep and sed
+Array Manipulation
+String Splitting
+Advanced String comparison
+
+-------------------------------------------------------
+Stream Editor:
+
+# Replace Text in a File:
+# Replace all occurrences of "old_text" with "new_text" in a file and save the result to a new file.
+sed 's/old_text/new_text/g' input.txt > output.txt
+
+# Remove Lines Matching a Pattern:
+# Remove all lines in a file that contain the word "pattern."
+sed '/pattern/d' input.txt > output.txt
+
+# Add Text to the Beginning of Each Line:
+# Add "Prefix: " to the beginning of each line in a file.
+sed 's/^/Prefix: /' input.txt > output.txt
+
+# Extract Text Using Capture Groups:
+# Extract and print the text between parentheses on each line.
+sed -n 's/.*(\(.*\))/\1/p' input.txt
+
+-------------------
+Regular Expressions: Grep (Global Regular Expression Print)
+
+# Search for a Pattern in a File:
+# Search for the word "search_term" in a file and display matching lines.
+grep "old_text" input.txt
+
+# Search for a Pattern in Multiple Files:
+# Search for "pattern" in all .txt files within the current directory.
+grep "pattern" *.txt
+
+# Search for Whole Words Only:
+# Search for the whole word "word" (not as part of another word) in a file.
+grep -w "word" input.txt
+ 
+# Count the Occurrences of a Pattern:
+# Count the number of times "pattern" appears in a file.
+grep -c "pattern" input.txt
+
+# Search for Lines Not Matching a Pattern:
+# Display all lines in a file that do not contain the word "exclude."
+grep -v "exclude" input.txt
+
+-------------------
+Search & Replace with awk: 
+
+GSUB -> Global substitution
+NR -> Line Numbers
+
+File:
+Name, Age, City
+John, 30, New York
+Alice, 25, Los Angeles
+Bob, 35, Chicago
+
+# Example 1: Replace "John" with "Jonathan":
+awk '{gsub("John", "Jonathan")}1' file.txt
+
+# Example 2: Replace "Age" with "Years" in the header line:
+awk 'NR==1{gsub("Age", "Years")}1' file.txt
+
+# Example 3: Replace "30" with "31" for John's age:
+awk 'NR==2{gsub("30", "31")}1' file.txt
+
+# Example 4: Replace "Los Angeles" with "San Francisco" for Alice's city:
+awk 'NR==3{gsub("Los Angeles", "San Francisco")}1' file.txt
+
+# Example 5: Replace "Alice" with "Alicia" and "25" with "26" for Alice's name and age:
+awk 'NR==3{gsub("Alice", "Alicia"); gsub("25", "26")}1' file.txt
+
+-------------------------------------------------------
+String Splitting:
+
+Check -> ifs.sh
+
+Extracting Domain from URL:
+
+url="https://www.example.com/path/to/page"
+IFS="/" read -a url_parts <<< "$url"
+domain="${url_parts[2]}"  # Extracts "www.example.com"
+
+Parsing CSV Data:
+
+csv_line="John,Doe,30,New York"
+IFS="," read -a csv_fields <<< "$csv_line"
+first_name="${csv_fields[0]}"  # John
+last_name="${csv_fields[1]}"   # Doe
+age="${csv_fields[2]}"         # 30
+city="${csv_fields[3]}"        # New York
+
+Extracting Date Components:
+
+date_string="2023-09-23"
+IFS="-" read -a date_parts <<< "$date_string"
+year="${date_parts[0]}"  # 2023
+month="${date_parts[1]}" # 09
+day="${date_parts[2]}"   # 23
+
+Parsing Configuration File:
+
+config="hostname=localhost port=8080 username=admin"
+IFS=" " read -a config_params <<< "$config"
+for param in "${config_params[@]}"; do
+    key="${param%%=*}"
+    value="${param#*=}"
+    echo "Key: $key, Value: $value"
+done
+
+-------------------------------------------------------
+Array Manipulation:
+
+check -> array-manipulation.sh
+
+-------------------------------------------------------
+Advanced String comparison
+
+Check -> string-match.sh
+
+

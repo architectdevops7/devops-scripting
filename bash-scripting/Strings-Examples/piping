@@ -1,0 +1,57 @@
+Basic Piping (|):
+ls | grep myfile.txt
+
+Counting Lines with 'wc':
+cat mytext.txt | wc -l
+
+Sorting and Piping:
+cat unsorted.txt | sort
+
+Piping Multiple Commands:
+ls | grep .txt | wc -l
+
+Piping with 'grep' and 'awk':
+ls | grep pattern | awk '{print "File: " $0}'
+
+-------------------------------------------------------
+Complex Piping
+
+1. Extract all unique usernames:
+awk '{print $5}' activity.log | sort -u
+
+2. Count the number of times each user made a purchase:
+grep "made a purchase" activity.log | awk '{print $5}' | sort | uniq -c
+
+3. List the users who visited the homepage on August 2nd:
+grep "2023-08-02.*visited homepage" activity.log | awk '{print $5}' | sort -u
+
+-------------------------------------------------------
+Standard Input (stdin), Standard Output (stdout), and Standard Error (stderr). 
+These streams are fundamental for communication between processes and are typically associated with the terminal. 
+
+1. Standard Input (stdin):
+
+#!/bin/bash
+echo "Please enter your name: "
+read name
+echo "Hello, $name!"
+
+2. Standard Output (stdout):
+
+#!/bin/bash
+echo "This is a message sent to stdout."
+
+3. Standard Error (stderr):
+
+#!/bin/bash
+# Simulate an error
+if [ ! -f "non_existent_file.txt" ]; then
+    echo "Error: File not found!" >&2
+fi
+
+>: Redirects stdout to a file, overwriting its contents.
+>>: Redirects stdout to a file, appending to its contents.
+<: Redirects stdin from a file.
+2>: Redirects stderr to a file.
+2>&1: Redirects stderr to stdout, allowing you to capture both streams in the same output.
+
